@@ -1,0 +1,9 @@
+# Dependabot is configured, but it is allowed to execute external code during
+# updates (ISSUE-901, critical) and declares no cooldown window (ISSUE-902, low).
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: daily
+    insecure-external-code-execution: allow
