@@ -22,6 +22,7 @@ jobs:
       - run: npm run build
 
   deploy:
-    # Forwards every secret to an external reusable workflow. ISSUE-302 (high).
+    # Forwards every secret to an external reusable workflow from an
+    # unauthorized owner. ISSUE-302 (high) + ISSUE-713 (high).
     uses: acme/shared-workflows/.github/workflows/deploy.yml@main
     secrets: inherit

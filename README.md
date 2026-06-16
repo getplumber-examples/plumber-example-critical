@@ -33,7 +33,9 @@ abstain otherwise. The eight static ones fire unconditionally.
 
 `write-all` permissions (803), insecure commands (208), full `toJson(github)` dump (213),
 spoofable `github.actor` check (210), `secrets: inherit` (302), `curl | bash` (411), unpinned
-third-party action (701), persisted checkout credentials (307), static-token publish (421),
+third-party action (701), actions from unauthorized sources (713 — `tj-actions/changed-files`,
+`some-org/widget`, and the `acme/shared-workflows` reusable workflow), persisted checkout
+credentials (307), static-token publish (421),
 cross-branch cache restore (705) · forbidden image tag (102/103), unpinned package install
 (214), `upload-artifact: path: .` (419), no environment gate (305), unsigned release (712),
 unpinned Dockerfile base (706) · no workflow `name:` (601), missing `concurrency:` (418),
