@@ -1,6 +1,6 @@
 # plumber-example-critical — target Plumber score: **E** 🔴
 
-[![Plumber Score](https://img.shields.io/badge/Plumber%20Score-E-red)](https://github.com/getplumber-examples/plumber-example-critical/actions/workflows/plumber.yml?query=branch%3Amain)
+[![Plumber Score](https://img.shields.io/badge/Plumber%20Score-E-f85149?style=for-the-badge&labelColor=2b2d42)](https://github.com/getplumber-examples/plumber-example-critical/actions/workflows/plumber.yml?query=branch%3Amain)
 
 A deliberately dangerous repository for the [Plumber](https://github.com/getplumber/plumber)
 scanner. It uses the **same** [`.plumber.yaml`](./.plumber.yaml) policy as the clean and
