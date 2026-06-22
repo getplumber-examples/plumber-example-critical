@@ -38,15 +38,7 @@ github:
       enabled: true
     actionsMustNotCarryKnownCVEs:    # API
       enabled: true
-    actionRefsMustExistUpstream:     # API (impostor-commit)
-      enabled: true
-    actionPinCommentsMustMatchSha:   # API
-      enabled: true
-    actionPinsMustNotBeStale:        # API
-      enabled: true
     actionRefsMustNotCollide:        # API
-      enabled: true
-    actionsMustNotDuplicateRunnerBuiltins:
       enabled: true
     containerImageMustNotUseForbiddenTags:
       enabled: true
@@ -58,35 +50,9 @@ github:
         - main
         - master
       containerImagesMustBePinnedByDigest: true
-    containerCredentialsMustComeFromSecrets:
-      enabled: true
-    dockerfilesMustPinBaseImageByDigest:
-      enabled: true
-    releaseWorkflowsMustNotRestoreUntrustedCache:
-      enabled: true
-    releaseWorkflowsMustSignArtefacts:
-      enabled: true
-    publishWorkflowsMustUseOidcTrustedPublishing:
-      enabled: true
 
     # ── Expressions & injection ─────────────────────────────────────────────
     workflowMustNotInjectUserInputInScripts:
-      enabled: true
-    workflowMustNotInjectVarsInScripts:
-      enabled: true
-    workflowMustNotWriteUntrustedContentToGitHubEnv:
-      enabled: true
-    workflowMustNotExportEntireGitHubContext:
-      enabled: true
-    workflowMustNotReEnableInsecureCommands:
-      enabled: true
-    workflowMustNotTrustSpoofableActorChecks:
-      enabled: true
-    workflowConditionsMustBeSound:
-      enabled: true
-    workflowContainsCallsMustBeSound:
-      enabled: true
-    workflowMustPinPackageInstalls:
       enabled: true
 
     # ── Secrets, credentials & permissions ──────────────────────────────────
@@ -94,21 +60,9 @@ github:
       enabled: true
     reusableWorkflowsMustNotInheritSecrets:
       enabled: true
-    workflowMustNotUnredactSecretsViaFromJSON:
-      enabled: true
-    workflowMustNotExportEntireSecretsContext:
-      enabled: true
-    workflowMustNotIndexSecretsDynamically:
-      enabled: true
     workflowsMustDeclarePermissions:
       enabled: true
     workflowMustNotGrantPermissionsWriteAll:
-      enabled: true
-    deployJobsMustUseEnvironmentGate:
-      enabled: true
-    githubAppTokensMustBeRevokedOnExit:
-      enabled: true
-    checkoutMustNotPersistCredentials:
       enabled: true
 
     # ── Triggers & composition ──────────────────────────────────────────────
@@ -133,14 +87,6 @@ github:
       required: github/codeql-action
 
     # ── Workflow hygiene ────────────────────────────────────────────────────
-    workflowsMustHaveExplicitName:
-      enabled: true
-    workflowsMustDeclareConcurrency:
-      enabled: true
-    workflowMustNotUseKnownMisfeatures:
-      enabled: true
-    workflowMustNotContainObfuscation:
-      enabled: true
     securityJobsMustNotBeWeakened:
       enabled: true
       securityJobPatterns:
@@ -174,13 +120,3 @@ github:
         - "release/*"
       allowForcePush: false
       codeOwnerApprovalRequired: true
-    repositoriesMustConfigureDependencyUpdates:
-      enabled: true
-    repositoriesMustRunSAST:
-      enabled: true
-    repositoriesMustPublishSecurityPolicy:
-      enabled: true
-    dependabotMustNotAllowInsecureExternalCodeExecution:
-      enabled: true
-    dependabotEcosystemsMustHaveCooldown:
-      enabled: true

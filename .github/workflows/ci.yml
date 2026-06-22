@@ -70,6 +70,10 @@ jobs:
         with:
           name: everything
           path: .
+      - name: Upload SARIF
+        uses: github/codeql-action/upload-sarif@v2 # Actions must not use ambiguous tag/branch refs. ISSUE-710 (Medium)
+        with:
+          sarif_file: results.sarif
 
   auto-approve:
     # github.actor is attacker-spoofable. ISSUE-210 (high).
