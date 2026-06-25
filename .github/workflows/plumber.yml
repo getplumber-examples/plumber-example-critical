@@ -7,9 +7,11 @@ on:
     branches: [main]
 
 # Least-privilege: read the repo, write SARIF to code scanning.
+# id-token is for the PR's Plumber Score push (publishes only from the default branch).
 permissions:
   contents: read
   security-events: write
+  id-token: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -22,4 +24,41 @@ jobs:
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
           persist-credentials: false
-      - uses: getplumber/plumber@415dc5de65b1707168a8b58b3b59727aa8a30657 # v0.3.51
+
+      # --- Test the PR version of Plumber (feat/score-push) by building it from
+      # source. The released action only downloads tagged binaries, and #269 is
+      # not released yet, so a source build is the only way to exercise the PR's
+      # CLI (e.g. --push-score) end to end. Swap back to
+      # `uses: getplumber/plumber@<sha>` once a release contains #269. ---
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          repository: getplumber/plumber
+          ref: feat/score-push
+          path: .plumber-src
+          persist-credentials: false
+
+      - uses: actions/setup-go@4a3601121dd01d1626a1e23e37211e3254c1c06c # v6.4.0
+        with:
+          go-version: stable
+
+      - name: Build Plumber from the PR branch
+        working-directory: .plumber-src
+        run: |
+          cp .plumber.yaml internal/defaultconfig/default.yaml
+          go build -o plumber .
+
+      - name: Run Plumber (PR build)
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          # Publish the live Plumber Score badge, but only from the default branch
+          # (the CLI self-gates too). Remove this line to skip the score push.
+          PLUMBER_ANALYZE_PUSH_SCORE: ${{ github.ref == 'refs/heads/main' }}
+        run: |
+          .plumber-src/plumber analyze --sarif plumber.sarif --score-point
+
+      - name: Upload SARIF to Code Scanning
+        if: ${{ always() && hashFiles('plumber.sarif') != '' }}
+        uses: github/codeql-action/upload-sarif@8aad20d150bbac5944a9f9d289da16a4b0d87c1e # v4.36.2
+        with:
+          sarif_file: plumber.sarif
