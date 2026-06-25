@@ -7,7 +7,8 @@ on:
     branches: [main]
 
 # Least-privilege: read the repo, write SARIF to code scanning.
-# id-token is for the PR's Plumber Score push (publishes only from the default branch).
+# id-token mints the OIDC token for the Plumber Score push; the score service
+# reads the verified branch from it and keeps only the default-branch result.
 permissions:
   contents: read
   security-events: write
@@ -51,9 +52,10 @@ jobs:
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
-          # Publish the live Plumber Score badge, but only from the default branch
-          # (the CLI self-gates too). Remove this line to skip the score push.
-          PLUMBER_ANALYZE_PUSH_SCORE: ${{ github.ref == 'refs/heads/main' }}
+          # Publish the live Plumber Score on every run; the score service keeps
+          # only the default-branch result for the public badge (it reads the
+          # verified branch from the OIDC token claim). Remove this line to skip.
+          PLUMBER_ANALYZE_PUSH_SCORE: "true"
         run: |
           .plumber-src/plumber analyze --sarif plumber.sarif --score-point
 
