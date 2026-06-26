@@ -55,7 +55,7 @@ jobs:
           # Publish the live Plumber Score on every run; the score service keeps
           # only the default-branch result for the public badge (it reads the
           # verified branch from the OIDC token claim). Remove this line to skip.
-          PLUMBER_ANALYZE_PUSH_SCORE: "true"
+          PLUMBER_ANALYZE_SCORE_PUSH: "true"
         run: |
           .plumber-src/plumber analyze --sarif plumber.sarif --score-point
 
