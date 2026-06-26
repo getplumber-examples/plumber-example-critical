@@ -29,7 +29,7 @@ jobs:
       # --- Test the PR version of Plumber (feat/score-push) by building it from
       # source. The released action only downloads tagged binaries, and #269 is
       # not released yet, so a source build is the only way to exercise the PR's
-      # CLI (e.g. --push-score) end to end. Swap back to
+      # CLI (e.g. --score-push) end to end. Swap back to
       # `uses: getplumber/plumber@<sha>` once a release contains #269. -----
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
