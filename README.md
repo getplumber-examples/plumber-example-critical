@@ -45,10 +45,11 @@ ref (`402`, `github/codeql-action/upload-sarif@v2` resolves as both).
 
 ## A note on ISSUE-301 (leaked secrets)
 
-The `pipelineMustNotLeakSecretsInConfig` control (gitleaks) is enabled in the policy, but this
-repo intentionally contains **no** real-format secret. Planting an `AKIA…`/token-shaped string
-would cause **GitHub push protection to reject the push** of this very repo. To demo ISSUE-301
-locally, add a fake secret and run `gitleaks detect` before pushing, then remove it.
+The secret-detection control (`pipelineMustNotLeakSecretsInConfig` / ISSUE-301) was removed
+from Plumber — see the [security advisory GHSA-w2xj-4v44-6rqr](https://github.com/getplumber/plumber/security/advisories/GHSA-w2xj-4v44-6rqr)
+and [plumber#310](https://github.com/getplumber/plumber/issues/310). This repo therefore
+contains no leaked-secret scenario; use GitHub push protection and pre-commit scanning in
+your own repos instead.
 
 ## Patterns waiting on future releases
 
