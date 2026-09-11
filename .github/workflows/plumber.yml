@@ -24,7 +24,7 @@ jobs:
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
           persist-credentials: false
-      - uses: getplumber/plumber@e3e7a4a54501ea5bed8d015e68ad80539502a22b # v0.4.13
+      - uses: getplumber/plumber@f84005b69dc57965d192feedd08b4a20fa6e52cc # v0.4.60
         with:
           # This repo is deliberately dangerous (target grade E). Surface every
           # finding to code scanning and publish the live Plumber Score badge,
