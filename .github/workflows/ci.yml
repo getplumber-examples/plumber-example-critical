@@ -32,7 +32,7 @@ jobs:
       # Third-party action pinned by tag, with a published advisory, from an
       # owner outside the authorized allowlist.
       # ISSUE-701 (high) + ISSUE-703 (critical, API) + ISSUE-713 (high).
-      - uses: tj-actions/changed-files@v45.0.0
+      - uses: tj-actions/changed-files@v45.0.8
 
       # Third-party action pinned to a 40-char SHA that does not exist in the
       # upstream repo (a real action, but this commit was never pushed there),
